@@ -1,0 +1,15 @@
+À AJOUTER DANS <head> DE index.html :
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0b6b2b">
+<link rel="apple-touch-icon" href="icon-192.png">
+
+À AJOUTER JUSTE AVANT </body> :
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./service-worker.js');
+  });
+}
+</script>
