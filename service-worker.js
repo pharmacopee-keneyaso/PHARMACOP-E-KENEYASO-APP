@@ -1,5 +1,5 @@
-const CACHE_NAME = 'keneyaso-v3-audio-pro';
-const CORE = ['./manifest.json','./icon-192.png','./icon-512.png'];
+const CACHE_NAME = 'keneyaso-v4-audio-test-reel';
+const CORE = ['./manifest.json','./icon-192.png','./icon-512.png','./faida-01.mp3','./dedicace-sobre-gazza.mp3'];
 
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(CORE)));
