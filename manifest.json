@@ -1,13 +1,13 @@
 {
   "name": "PHARMACOPÉE KENEYASO",
   "short_name": "KENEYASO",
-  "description": "Application officielle de la Pharmacopée Keneyaso",
+  "description": "Catalogue et commandes PHARMACOPÉE KENEYASO",
+  "lang": "fr",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#0b6b2b",
-  "orientation": "portrait-primary",
+  "background_color": "#062416",
+  "theme_color": "#0b6b3a",
   "icons": [
     {
       "src": "icon-192.png",

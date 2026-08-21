@@ -1,0 +1,9 @@
+PHARMACOPÉE KENEYASO — VERSION FINALE VALIDÉE
+
+Contenu :
+- index.html : application
+- manifest.json : installation Android
+- service-worker.js : fonctionnement PWA / cache
+- icon-192.png et icon-512.png : icône officielle
+
+Pour l'installation Android complète, publier ensemble ces fichiers sur GitHub Pages/HTTPS, puis ouvrir le site sur le téléphone et choisir « Ajouter à l’écran d’accueil » ou « Installer l’application ».
