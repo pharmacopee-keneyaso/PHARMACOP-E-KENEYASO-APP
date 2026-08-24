@@ -32,11 +32,12 @@ jobs:
 
       - name: Construire APK
         run: |
-          cd android-project
+          cd android-project/Pharmacopee_Keneyaso_Android_V3_CORRIGE
           gradle assembleDebug
 
       - name: Publier APK
         uses: actions/upload-artifact@v4
         with:
-          name: PHARMACOPEE-BEFO-INTERNATIONAL-APK
-          path: android-project/app/build/outputs/apk/debug/*.apk
+         
+         path: android-project/       Pharmacopee_Keneyaso_Android_V3_CORRIGE      /app/build/outputs/apk/debug/*.apk
+        
