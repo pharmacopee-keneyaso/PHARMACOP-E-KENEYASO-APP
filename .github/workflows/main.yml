@@ -24,21 +24,25 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '9.5.0'
+
       - name: Ouvrir le projet
         run: |
           rm -rf android-project
           mkdir android-project
           unzip PHARMACOPEE_KENEYASO_V3_LANGUES_DEBLOQUEES_SOURCE.zip -d android-project
-       
 
       - name: Construire APK
         run: |
           cd android-project/Pharmacopee_Keneyaso_Android_V3_CORRIGE
           gradle assembleDebug
 
+      - name: Vérifier APK
+        run: |
+          find android-project -type f -name "*.apk" -print
+
       - name: Publier APK
         uses: actions/upload-artifact@v4
         with:
-         
-         path: android-project/       Pharmacopee_Keneyaso_Android_V3_CORRIGE      /app/build/outputs/apk/debug/*.apk
-        
+          name: PHARMACOPEE-KENEYASO-APK
+          path: android-project/**/*.apk
+          if-no-files-found: error
