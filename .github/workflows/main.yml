@@ -27,7 +27,8 @@ jobs:
         run: |
           rm -rf android-project
           mkdir android-project
-          unzip PHARMACOPEE_BEFO_INTERNATIONAL_SOURCE.zip -d android-project
+          unzip PHARMACOPEE_BEFO_INTERNATIONAL_SOURCE_CORRIGE_LANGUE.zip -d android-project
+       
 
       - name: Construire APK
         run: |
