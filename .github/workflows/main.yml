@@ -6,6 +6,9 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -20,27 +23,53 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Installer Android SDK 36
+      - name: Installer Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Installer Android 36
         run: |
           yes | sdkmanager --licenses > /dev/null || true
-          sdkmanager "platforms;android-36"
+          sdkmanager "platform-tools" "platforms;android-36" "build-tools;36.0.0"
 
       - name: Installer Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.13'
 
-      - name: Ouvrir le nouveau projet
+      - name: Récupérer le ZIP de l'application
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          ZIP="PHARMACOPEE_KENEYASO_SOURCE_TEST_100_FAIDA_30_DEDICACES.zip"
+
+          if [ ! -f "$ZIP" ]; then
+            gh release download \
+              --repo "$GITHUB_REPOSITORY" \
+              --pattern "$ZIP" \
+              --dir .
+          fi
+
+          test -f "$ZIP"
+
+      - name: Ouvrir le projet Android
         run: |
           rm -rf android-project
           mkdir android-project
-          unzip -q "PHARMACOPEE_KENEYASO_SOURCE_TEST_100_FAIDA_30_DEDICACES.zip" -d android-project
+
+          unzip -q \
+          "PHARMACOPEE_KENEYASO_SOURCE_TEST_100_FAIDA_30_DEDICACES.zip" \
+          -d android-project
 
       - name: Construire APK
         run: |
           PROJECT_DIR="$(dirname "$(find android-project -type f \( -name 'settings.gradle.kts' -o -name 'settings.gradle' \) | head -n 1)")"
+
           echo "Projet Android : $PROJECT_DIR"
+
+          test -n "$PROJECT_DIR"
+
           cd "$PROJECT_DIR"
+
           gradle :app:assembleDebug --stacktrace
 
       - name: Publier APK
